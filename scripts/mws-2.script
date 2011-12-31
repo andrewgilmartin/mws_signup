@@ -1,0 +1,459 @@
+event "Volunteer for the MWS Holiday Fair"
+
+	description "TODO"
+
+	contact "Trish Jones"
+
+	hint hide-activities-without-shifts true
+
+	volunteer-property "Backed Good"
+		description "TODO"
+	end
+	
+	role "Sales"
+		description "TODO"
+	end
+
+	role "Serving"
+		description "TODO"
+	end
+
+	role "Setup"
+		description "TODO"
+	end
+
+	role "Attendant"
+		description "TODO"
+	end
+
+	role "Greeter"
+		description "TODO"
+	end
+
+	role "Crafts"
+		description "TODO"
+	end
+
+	role "Griller"
+		description "TODO"
+	end
+	
+	role "Tickets Sales"
+		description "TODO"
+	end
+
+	role "Cleanup"
+		description "TODO"
+	end
+
+	day "Friday"
+		date 2010-11-18
+	end
+
+	day "Saturday"
+		date 2010-11-19
+		hours "Adult Night"
+			starting 6PM
+			ending 10PM
+		end
+	end
+
+	day "Sunday"
+		date 2010-11-20
+		hours "Fair"
+			starting 10AM
+			ending 4PM
+		end
+	end
+
+	activity "School Store"
+
+		description "TODO"
+
+		contact "Trish Jones"
+
+		day "Saturday"	
+			shift "Sales"
+				count 3
+				starting 5PM
+				ending 8PM
+			end
+			shift "Sales"
+				count 3
+				starting 8PM
+				ending 11PM
+			end
+		end
+
+		day "Sunday"
+			shift "Sales"
+				count 4
+				starting 10AM
+				ending 1PM
+			end
+			shift "Sales"
+				count 4
+				starting 12PM
+				ending 4PM
+			end
+		end
+	end
+
+	activity "Book Garden"
+
+		description "TODO"
+
+		contact "Trish Jones"
+
+		day "Saturday"
+			shift "Sales"
+				count 2
+				starting 6PM
+				ending 9PM
+			end
+			shift "Sales"
+				count 2
+				starting 7PM
+				ending 10PM
+			end
+		end
+
+		day "Sunday"
+			shift "Sales"
+				count 2
+				starting 10AM
+				ending 1PM
+			end
+			shift "Sales"
+				count 2
+				starting 1PM
+				ending 4PM
+			end
+		end
+	end
+
+	activity "Food Service"
+
+		description "TODO"
+
+		contact "Trish Jones"
+
+		day "Saturday"
+			shift "Serving"
+				count 2
+				starting 5PM
+				ending 8PM
+			end
+			shift "Serving"
+				count 2
+				starting 8PM
+				ending 10PM
+			end
+		end
+	end
+
+	activity "Farmers Market"
+
+		description "TODO"
+
+		contact "Trish Jones"
+
+		day "Saturday"
+			shift "Setup"
+				count 4
+				starting 10AM
+				ending 2PM
+			end
+		end
+	end
+	
+	activity "Bee Room"
+
+		description "TODO"
+
+		contact "Trish Jones"
+
+		day "Sunday"
+			shift "Crafts"
+				starting 10AM
+				ending 1PM
+			end
+			shift "Sales"
+				count 2
+				starting 10AM
+				ending 1PM
+			end
+			shift "Crafts"
+				starting 1PM
+				ending 4PM
+			end
+			shift "Sales"
+				count 2
+				starting 1PM
+				ending 4PM
+			end
+		end
+	end
+
+	activity "Safety"
+
+		description "TODO"
+
+		contact "Trish Jones"
+
+		day "Sunday"
+			shift "Attendant"
+				count 4
+				starting 10AM
+				ending 1PM
+			end
+			shift "Attendant"
+				count 4
+				starting 1PM
+				ending 4PM
+			end
+		end
+	end
+
+	activity "Greeting"
+
+		description "TODO"
+
+		contact "Trish Jones"
+
+		day "Sunday"
+			shift "Greeter"
+				starting 10AM
+				ending 1PM
+			end
+			shift "Greeter"
+				starting 1PM
+				ending 3PM
+			end
+		end
+	end
+
+	activity "Children's Crafting"
+
+		description "TODO"
+
+		contact "Trish Jones"
+
+		day "Sunday"
+			shift "Crafts"
+				count 6
+				starting 10AM
+				ending 1PM
+			end
+			shift "Crafts"
+				count 6
+				starting 1PM
+				ending 4PM
+			end
+		end
+	end
+
+	activity "Family Crafting"
+
+		description "TODO"
+
+		contact "Trish Jones"
+
+		day "Sunday"
+			shift "Crafts"
+				count 3
+				starting 10AM
+				ending 1PM
+			end
+			shift "Crafts"
+				count 3
+				starting 1PM
+				ending 4PM
+			end
+		end
+	end
+
+	activity "Marionette"
+
+		description "TODO"
+
+		contact "Trish Jones"
+
+		day "Sunday"
+		end
+	end
+
+	activity "Children's Activities"
+
+		description "TODO"
+
+		contact "Trish Jones"
+
+		day "Sunday"
+			shift "Tickets Sales"
+				count 2
+				starting 10AM
+				ending 1PM
+			end
+			shift "Tickets Sales"
+				count 2
+				starting 1PM
+				ending 4PM
+			end
+			shift "Attendant"
+				count 2
+				starting 10AM
+				ending 1PM
+			end
+			shift "Attendant"
+				count 2
+				starting 1PM
+				ending 4PM
+			end
+		end
+	end
+
+	activity "Gnome Cave"
+
+		description "TODO"
+
+		contact "Trish Jones"
+
+		day "Sunday"
+			shift "Attendant"
+				count 2
+				starting 10AM
+				ending 1PM
+			end
+			shift "Attendant"
+				count 2
+				starting 1PM
+				ending 4PM
+			end
+		end
+	end
+
+	activity "Bakery"
+
+		description "TODO"
+
+		contact "Trish Jones"
+
+		day "Sunday"	
+			shift "Sales"
+				count 3
+				starting 9AM
+				ending 12PM
+			end
+			shift "Sales"
+				count 3
+				starting 10AM
+				ending 1PM
+			end
+			shift "Sales"
+				count 3
+				starting 12PM
+				ending 3PM
+			end
+			shift "Sales"
+				count 3
+				starting 1PM
+				ending 4PM
+			end
+		end
+	end
+
+	activity "Cafe"
+
+		description "TODO"
+
+		contact "Trish Jones"
+		
+		day "Sunday"
+			shift "Sales"
+				count 3
+				starting 10AM
+				ending 1PM
+			end
+			shift "Sales"
+				count 3
+				starting 1PM
+				ending 4PM
+			end
+		end
+	end
+
+	activity "Grill"
+	
+		description "TODO"
+		
+		contact "Trish Jones"
+		
+		day "Sunday"
+			shift "Griller"
+				starting 10AM
+				ending 1PM
+			end
+			shift "Griller"
+				starting 11AM
+				ending 2PM
+			end
+			shift "Griller"
+				starting 12PM
+				ending 3PM
+			end
+		end
+	end
+	
+	activity "Parking"
+
+		description "TODO"
+
+		contact "Trish Jones"
+
+		day "Sunday"	
+			shift "Attendant"
+				count 4
+				starting 9AM
+				ending 1PM
+			end
+			shift "Attendant"
+				count 4
+				starting 1PM
+				ending 4PM
+			end
+		end
+	end
+
+	activity "General"
+
+		description "TODO"
+
+		contact "Trish Jones"
+
+		day "Friday"
+			shift "Setup"
+				count 16
+				starting 6PM
+				ending 10PM
+			end
+		end
+
+		day "Saturday"
+			shift "Setup"
+				count 8
+				starting 10AM
+				ending 2PM
+			end
+		end
+		
+		day "Sunday"
+			shift "Cleanup"
+				count 18
+				starting 4PM
+				ending 7PM
+			end
+		end
+	end
+
+end

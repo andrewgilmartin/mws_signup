@@ -1,0 +1,152 @@
+contact "Andrew Gilmartin"
+  email "andrew@andrewgilmartin.com"
+  telephone "401-789-3077x123"
+end
+event "Volunteer for the MWS Holiday Fair"
+  id "110"
+  description "
+The holiday fair occurs this year on November 25, 27 & 28. 
+Review the schedules, below, for available shifts (in red). 
+To volunteer, click the shift\'s name and then complete the 
+presented form.
+If you have questions about volunteering or this tool 
+please contact Jane Smith at <info@mws.edu>.
+"
+  role "Setup"
+    id "105"
+    description "this is a role description"
+  end
+  role "Crafting"
+    id "107"
+    description "this is a role description"
+  end
+  role "Sales"
+    id "108"
+    description "this is a sales role description"
+  end
+  role "misc"
+    id "109"
+    description "this is a misc role description"
+  end
+  role "Attendent"
+    id "104"
+    description "this is a role description"
+  end
+  day "Friday"
+    id "101"
+    date 2010-12-29
+    hours "Main Event"
+      opening "10 AM"
+      closing "4 PM"
+    end
+    hours "Parent\'s Night"
+      opening "8 PM"
+      closing "10 PM"
+    end
+  end
+  day "Saturday"
+    id "102"
+    date 2010-12-30
+    hours ""
+      opening "10 AM"
+      closing "6 PM"
+    end
+  end
+  activity "Bee Room"
+    id "111"
+    description "this is the bee room description"
+    shift "Setup"
+      id "112"
+      day "Friday"
+      start "8 AM"
+      stop "11 AM"
+    end
+    shift "Crafting"
+      id "113"
+      day "Friday"
+      start "10 AM"
+      stop "2 PM"
+    end
+    shift "Sales"
+      id "114"
+      day "Friday"
+      start "10 AM"
+      stop "2 PM"
+    end
+    shift "Crafting"
+      id "115"
+      day "Friday"
+      start "2 PM"
+      stop "6 PM"
+      volunteer "Andrew Gilmartin"
+    end
+    shift "Sales"
+      id "116"
+      day "Friday"
+      start "2 PM"
+      stop "6 PM"
+    end
+    shift "misc"
+      id "117"
+      day "Friday"
+      start "11 AM"
+      stop "5 PM"
+      volunteer "Andrew Gilmartin"
+    end
+    shift "Crafting"
+      id "118"
+      day "Saturday"
+      start "10 AM"
+      stop "2 PM"
+      volunteer "Andrew Gilmartin"
+    end
+    shift "Sales"
+      id "119"
+      day "Saturday"
+      start "10 AM"
+      stop "2 PM"
+      volunteer "Andrew Gilmartin"
+    end
+  end
+  activity "Parking"
+    id "120"
+    description "this is the parking description"
+    shift "Attendent"
+      id "121"
+      day "Friday"
+      start "9 AM"
+    end
+    shift "Attendent"
+      id "122"
+      day "Friday"
+      start "12 PM"
+      stop "3 PM"
+    end
+    shift "Attendent"
+      id "123"
+      day "Friday"
+      start "3 PM"
+      stop "6 PM"
+    end
+    shift "Attendent"
+      id "124"
+      day "Friday"
+      start "8 PM"
+      stop "11 PM"
+    end
+  end
+  activity "Unparking"
+    id "125"
+    description "this is the un-parking description"
+  end
+  activity "Cake & Desserts"
+    id "126"
+    description "this is the un-parking description"
+    shift "Sales"
+      id "127"
+      day "Friday"
+      start "8 AM"
+      stop "11 PM"
+    end
+  end
+end

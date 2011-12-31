@@ -1,0 +1,102 @@
+event "The Celebration Volunteer Signup"
+  id "1004"
+  description "Use this text to describe the event and what is expected of the volunteers."
+  contact "Joe Smith"
+  role "Setup"
+    id "1005"
+    description "Setup will be done before any of the guests arrive. 
+		You will be directed to do whatever is needed to be done."
+  end
+  role "Cleanup"
+    id "1006"
+    description "Cleanup is done after all of the guest have left.
+		You will be directed to do whatever is needed to be done."
+  end
+  role "Serving"
+    id "1007"
+    description "You will be serving the guests during the celebration. 
+		Please wear black pants and a white shirt."
+  end
+  role "Greeter"
+    id "1008"
+    description "You will be greeting the guests as they arrive for the celebration. 
+		Please wear black pants and a blue shirt."
+  end
+  day "Friday"
+    id "1009"
+    date 2010-01-21
+  end
+  day "Saturday"
+    id "1010"
+    date 2010-01-22
+    hours "Service"
+      id "1011"
+      starting "8 AM"
+      ending "9 AM"
+    end
+    hours "Celebration"
+      id "1012"
+      starting "10 AM"
+      ending "2 PM"
+    end
+  end
+  activity "Off-stage"
+    id "1013"
+    contact "Jane Brown"
+    shift "Setup"
+      id "1014"
+      day "Friday"
+      starting "1 PM"
+      ending "4 PM"
+    end
+    shift "Setup"
+      id "1015"
+      day "Friday"
+      starting "1 PM"
+      ending "4 PM"
+    end
+    shift "Cleanup"
+      id "1016"
+      day "Saturday"
+      starting "2 PM"
+      ending "4 PM"
+    end
+    shift "Cleanup"
+      id "1017"
+      day "Saturday"
+      starting "2 PM"
+      ending "4 PM"
+      volunteer "Andrew Gilmartin"
+        id "1025"
+      end
+    end
+  end
+  activity "On-stage"
+    id "1018"
+    contact "Erasmus Josephson"
+    shift "Serving"
+      id "1019"
+      day "Saturday"
+      starting "10 AM"
+      ending "1 PM"
+    end
+    shift "Serving"
+      id "1020"
+      day "Saturday"
+      starting "11 AM"
+      ending "2 PM"
+    end
+    shift "Greeter"
+      id "1021"
+      day "Saturday"
+      starting "8 AM"
+      ending "9 AM"
+    end
+    shift "Greeter"
+      id "1022"
+      day "Saturday"
+      starting "10 AM"
+      ending "2 PM"
+    end
+  end
+end

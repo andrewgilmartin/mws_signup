@@ -1,0 +1,34 @@
+event "Event's Short Name"
+	description "Event's longer description"
+	contact "Andrew Gilmartin"
+	day "Sunday"
+		date 2010-12-25
+		hours "Open"
+			starting 10AM
+			ending 2PM
+		end
+	end
+	role "Sales"
+		description "..."
+	end
+	role "Cleanup"
+		description "..."
+	end
+	role "Setup"
+		description "..."
+	end
+	activity "..."
+		shift "Sales"
+			starting 9AM
+			ending 3PM
+		end
+		shift "Setup"
+			starting 8AM
+			ending 10AM
+		end
+		shift "Cleanup"
+			starting 2PM
+			ending 4PM
+		end
+	end
+end

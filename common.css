@@ -1,0 +1,127 @@
+.available {
+	background-color: #1A9641;
+	color: white;
+}
+
+.available > A {
+	background-color: #1A9641;
+	color: white;
+	/* text-decoration: none; */
+}
+
+.available > A.available {
+	background-color: #1A9641;
+	color: white;
+	/* text-decoration: none; */
+}
+
+.assigned {
+	background-color: #D7191C;
+	color: white;
+}
+
+.assigned > A {
+	background-color: #D7191C;
+	color: white;
+	/* text-decoration: none; */
+}
+
+.assigned > A.assigned {
+	background-color: #D7191C;
+	color: white;
+	/* text-decoration: none; */
+}
+
+.activity-open-0 {
+	background-color: #F5F5A8;
+}
+
+.activity-closed-0 {
+	background-color: #EAEAEA;
+}
+
+.activity-open-1 {
+	background-color: #E6E69A;
+}
+
+.activity-closed-1 {
+	background-color: #CDCDCD;
+}
+
+.morning {
+	background-color: #EEEEEE;
+}
+
+.afternoon {
+	background-color: #EEEEEE;
+}
+
+.open-hours-name {
+	background-color: #E6E69A; /* copies the background color of .activity-open-1 */
+}
+
+.closed-hours-name {
+	background-color: #CDCDCD;
+}
+
+.volunteer TH {
+	vertical-align: baseline;
+	text-align: right;
+}
+
+.volunteer TD {
+	vertical-align: baseline;
+	text-align: left;
+}
+
+TABLE {
+	/* border-collapse:collapse; */
+}
+
+TD {
+	padding: 1ex;
+	min-width: 1.5em;
+}
+
+H1 {
+	margin-top: 0;
+}
+
+.message {
+    	border: 1px solid;
+        margin: 10px 0px;
+	padding:15px 10px 15px 50px;
+	font-size: 120%;
+}
+
+.success-message {
+	color: #4F8A10;
+	background-color: #DFF2BF;
+}
+
+.error-message {
+	color: #D8000C;
+	background-color: #FFBABA;
+}
+
+.warning-message {
+	color: #9F6000;
+	background-color: #FEEFB3;
+}
+
+.information-message {
+	color: #00529B;
+	background-color: #BDE5F8;
+}
+
+.bottom-links {
+	padding-top: 2em;
+}
+
+.activity-volunteer-summary TH {
+	text-align: left;
+}
+
+.input {
+	width: 4in;
+}

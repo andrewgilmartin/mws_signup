@@ -1,0 +1,21 @@
+BODY {
+	margin-left: 3em;
+	margin-right: 3em;
+	margin-bottom: 3em;
+	margin-top: 0;
+	padding: 0;
+	background-color: #505050;
+	color: black;
+}
+
+.page-content { 
+	min-width: 45em;
+	background-color: white;
+	color: black;
+	padding: 2em;
+	padding-bottom: 4em;
+	margin: 1em;
+	margin-top: 0;
+}
+
+/* END */
