@@ -1,4 +1,13 @@
 <?php
+
+function exceptions_error_handler($severity, $message, $filename, $lineno) { 
+        ?><pre><?php
+        var_dump(debug_backtrace());
+        ?></pre><?php
+}
+
+set_error_handler('exceptions_error_handler');
+
 session_start();
 
 error_reporting (E_ALL | E_STRICT );

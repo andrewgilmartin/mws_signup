@@ -33,6 +33,12 @@ $volunteerPropertyCount = count($event->getVolunteerProperties());
 			
 			foreach ( $repository->getContactVolunteerRecords( $event->getId() ) as $contactVolunteerRecord ) {
 				$shift = $event->findShiftById( $contactVolunteerRecord['shift_id']);
+				if ( ! $shift ) { 
+?>
+					<td colspan="3"></td>
+<?php
+					continue;
+				}   
 ?>				
 				<tr>
 <?php

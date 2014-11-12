@@ -19,7 +19,7 @@ require_once 'edit-script-page-include.php';
 			<form method="POST">
 				<input type="hidden" name="version" value="<?=htmlspecialchars($version)?>"/>
 				<p>
-				<textarea name="script" rows="20" style="width: 100%" wrap="off"><?=htmlspecialchars($script)?></textarea>
+				<textarea name="script" rows="20" style="width: 100%" wrap="off"><?=htmlspecialchars($event->getScript())?></textarea>
 				</p>
 				<p>
 				<b>Passcode:</b>&nbsp;<input type="text" name="passcode" size="36" value="" autocomplete="off" />

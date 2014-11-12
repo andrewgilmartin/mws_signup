@@ -55,7 +55,7 @@ class EventWriter {
 	private function writeVolunteerProperty($volunteerProperty) {
 		$this->writer->write( 'volunteer-property', quotedCode( $volunteerProperty->getName() ) )->inc();
 		$this->writer->write( 'description', quotedCode( $volunteerProperty->getDescription() ) );
-		$this->writer->dec()->writer( 'end' );
+		$this->writer->dec()->write( 'end' );
 		return $this;
 	}
 	
