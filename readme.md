@@ -2,6 +2,8 @@
 
 This application was written to support the [Meadowbrook Waldorf](https://www.meadowbrookschool.com/) school's annual holiday fair. This fair is a multi-day event with many activites and much need of volunteers. The school was using a Google sheet before and it was not going well. This application was written over a few weeks and was the author's only PHP application.
 
+![Example Signup](example-1.png)
+
 ## Installation
 
 To install the application you will need a PHP server, commonly an Apache HTTPd server with the PHP7 module, and a MySql database server.
