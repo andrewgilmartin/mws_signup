@@ -6,7 +6,7 @@ Here is an example of a small event happening over two days. The first day has s
 
 ![Example Signup](example-1.png)
 
-The requirements for the application were changing as I built it. It was also unlikely that anyone other than me would be the "administrator" of it. Instead of creating a weak administrative interface I choose to create a language for desribing events and wrote an interpreter to translate that description into the actionable interface. Updating the langangue and interpreter was far faster than would have been the case with an administrative interface. The small event above is described
+The requirements for the application were changing as I built it. It was also unlikely that anyone other than me would be the "administrator" of it. Instead of creating a weak administrative interface I choose to create a language for desribing events and wrote an interpreter to translate that description into the actionable interface. Updating the langangue and interpreter was far faster than would have been the case with updating an administrative interface. The small event above is described
 
 	event "MWS Cafeteria Planning"
 
