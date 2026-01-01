@@ -1,68 +1,75 @@
 <?php
 
 class Hours {
-	
-	private static $nextId = 1;
-	
-	private $id;
-	private $name;
-	private $opening;
-	private $closing;
-	private $day;
-	
-	function __construct() {
+
+	private static int $nextId = 1;
+
+	private int $id;
+	private string $name;
+	private ?int $starting;
+	private ?int $ending;
+	private ?Day $day;
+
+	function __construct( $name ) {
 		$this->id = Hours::$nextId++;
+		$this->name = $name;
 	}
-	
-	function setId( $id ) {
+
+	function setId( $id ): static
+    {
 		$this->id = $id;
 		return $this;
 	}
-	
-	function getId() {
+
+	function getId(): int
+    {
 		return $this->id;
 	}
-	
-	function setName( $name ) {
-		$this->name = $name;
-		return $this;
-	}
-	
-	function getName() {
+
+	function getName(): string
+    {
 		return $this->name;
 	}
-	
-	function setStarting( $opening ) {
-		$this->opening = to_hour($opening);
-		return $this;
-	}
-	
-	function getStarting() {
-		return $this->opening;
-	}
-	
-	function setEnding( $closing ) {
-		$this->closing = to_hour($closing);
+
+	function setStarting( $starting ): static
+    {
+		$this->starting = to_hour($starting);
 		return $this;
 	}
 
-	function getEnding() {
-		return $this->closing;
+	function getStarting(): ?int
+    {
+		return $this->starting;
 	}
-	
-	function getDuration() {
-		return $this->closing - $this->opening;
+
+	function setEnding( $ending ): static
+    {
+		$this->ending = to_hour($ending);
+		return $this;
 	}
-	
-	function isOpen( $hour ) {
-		return $this->opening <= $hour && $hour < $this->closing;
+
+	function getEnding(): ?int
+    {
+		return $this->ending ?? null;
 	}
-	
-	function setDay($day) {
+
+	function getDuration(): ?int
+    {
+		return $this->ending - $this->starting;
+	}
+
+	function isOpen( $hour ): bool
+    {
+		return $this->starting <= $hour && $hour < $this->ending;
+	}
+
+	function setDay($day): void
+    {
 		$this->day = $day;
 	}
-	
-	function getDay() {
+
+	function getDay(): ?Day
+    {
 		return $this->day;
 	}
 }

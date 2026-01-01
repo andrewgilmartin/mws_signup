@@ -1,5 +1,27 @@
 <?php
 require_once 'volunteer-page-include.php';
+
+global
+    $base_href,
+    $magicnumber,
+    $SUCCESS_MESSAGE_KEY,
+    $INFORMATION_MESSAGE_KEY,
+    $ERROR_MESSAGE_KEY,
+    $repository,
+    $contacts,
+    $eventId,
+    $event,
+    $dayId,
+    $day,
+    $shiftId,
+    $shift;
+
+global
+    $VOLUNTEER_PROPERTY_INPUT_PREFIX,
+    $name,
+    $email,
+    $telephone;
+
 ?>
 <html>
 	<head>
@@ -16,12 +38,12 @@ require_once 'volunteer-page-include.php';
 			<?php
 			        if ( $event->getContact() ) {
 			?>
-				                <p>For more information about this event contact <?= makeContactSummaryHtml( $event->getContact() ) ?>.</p>
-						<?php
-						        }
+                        <p>For more information about this event contact <?= makeContactSummaryHtml( $event->getContact() ) ?>.</p>
+            <?php
+                    }
 
-			require_once 'message-include.php';
-?>
+			        require_once 'message-include.php';
+            ?>
 <h2><?= htmlspecialchars($shift->getActivity()->getName()) ?></h2>
 <p><?= htmlspecialchars($shift->getActivity()->getDescription()) ?></p>
 <?php
@@ -47,16 +69,16 @@ if ( $shift->getActivity()->getContact() ) {
 					<tr>
 						<th>Volunteer Name</th>
 						<td>
-<?php						
+<?php
 							if ( $shift->getVolunteer() ) {
 ?>
 								<?= htmlspecialchars($name) ?>
-<?php						
+<?php
 							}
 							else {
 ?>
 								<input type="text" name="name" value="<?= htmlspecialchars($name) ?>" class="input"/>
-<?php						
+<?php
 							}
 ?>
 						</td>
@@ -64,35 +86,35 @@ if ( $shift->getActivity()->getContact() ) {
 					<tr>
 						<th>Email</th>
 						<td>
-<?php						
+<?php
 							if ( $shift->getVolunteer() ) {
-?>								
+?>
 								<?= htmlspecialchars($email) ?>
-<?php								
+<?php
 							}
 							else {
-?>								
+?>
 								<input type="text" name="email" value="<?= htmlspecialchars($email) ?>" class="input"/>
-<?php								
+<?php
 							}
-?>							
+?>
 						</td>
 					</tr>
 					<tr>
 						<th>Telephone</th>
 						<td>
-<?php						
+<?php
 							if ( $shift->getVolunteer() ) {
-?>								
+?>
 								<?= htmlspecialchars($telephone) ?>
-<?php								
+<?php
 							}
 							else {
-?>								
+?>
 								<input type="text" name="telephone" value="<?= htmlspecialchars($telephone)?>" class="input"/>
-<?php								
+<?php
 							}
-?>						
+?>
 						</td>
 					</tr>
 <?php
@@ -101,7 +123,7 @@ if ( $shift->getActivity()->getContact() ) {
 						<tr>
 							<th><?= htmlspecialchars($volunteerProperty->getName()) ?></th>
 							<td>
-<?php							
+<?php
 								if ( $shift->getVolunteer() ) {
 									$description = $volunteerProperty->getDescription();
 									$value = $shift->getVolunteer()->getProperty($volunteerProperty->getName());
@@ -117,15 +139,15 @@ if ( $shift->getActivity()->getContact() ) {
 <?php
 								}
 								else {
-?>									
+?>
 									<p><?= htmlspecialchars( $volunteerProperty->getDescription() ) ?></p>
 									<input type="text" name="<?=$VOLUNTEER_PROPERTY_INPUT_PREFIX?><?=$volunteerProperty->getId()?>" class="input" />
-<?php									
+<?php
 								}
-?>						
+?>
 							</td>
 						</tr>
-<?php											
+<?php
 					}
 ?>
 					<tr>
@@ -145,7 +167,7 @@ if ( $shift->getActivity()->getContact() ) {
 ?>
 						</td>
 					</tr>
-				</table>				
+				</table>
 			</form>
 			<a href="event-page.php?event=<?=$eventId?>&day=<?=$dayId?>">Back to schedule</a> |
 			<a href="javascript:print()">Print this page as a reminder</a>

@@ -1,5 +1,21 @@
 <?php
 require_once 'edit-script-page-include.php';
+
+global
+    $base_href,
+    $magicnumber,
+    $SUCCESS_MESSAGE_KEY,
+    $INFORMATION_MESSAGE_KEY,
+    $ERROR_MESSAGE_KEY,
+    $repository,
+    $contacts,
+    $eventId,
+    $event,
+    $dayId,
+    $day,
+    $shiftId,
+    $shift;
+
 ?>
 <html>
 	<head>
@@ -29,7 +45,7 @@ require_once 'edit-script-page-include.php';
 				<input type="submit" value="Save Script (with backup)"/>
 				</p>
 			</form>
-			<div class="bottom-links">			
+			<div class="bottom-links">
 				<a href="event-page.php?event=<?=$eventId?>">Back to schedule</a>
 			</div>
 		</div>

@@ -1,22 +1,23 @@
 <?php
 
 class Day {
-	
-	private static $nextId = 1;
-	
-	private $id;
-	private $event;
-	private $name;
-	private $description;
-	private $contact;
+
+	private static int $nextId = 1;
+
+	private int $id;
+	private ?Event $event;
+	private string $name;
+	private ?string $description;
+	private ?Contact $contact;
 	private $date;
-	private $hours = array();
-	private $shifts = array();
-	
-	function __construct() {
+	private array $hours = array();
+	private array $shifts = array();
+
+	function __construct( $name ) {
 		$this->id = Day::$nextId++;
+		$this->name = $name;
 	}
-		
+
 	static function earliestStarting( $days ) {
 		$hour = null;
 		foreach ( $days as $day ) {
@@ -24,7 +25,7 @@ class Day {
 		}
 		return $hour;
 	}
-	
+
 	static function latestEnding( $days ) {
 		$hour = null;
 		foreach ( $days as $day ) {
@@ -33,7 +34,8 @@ class Day {
 		return $hour;
 	}
 
-	static function sortByDate( $days ) {
+	static function sortByDate( $days ): array
+    {
 		$v = array();
 		foreach ( $days as $day ) {
 			$v[$day->getDate()] = $day;
@@ -42,44 +44,47 @@ class Day {
 		$days = array_values($v);
 		return $days;
 	}
- 
-	function setId( $id ) {
+
+	function setId( $id ): static
+    {
 		$this->id = $id;
 		return $this;
 	}
 
-	function getId() {
+	function getId(): int
+    {
 		return $this->id;
 	}
-	
-	function setEvent( $event ) {
+
+	function setEvent( $event ): static
+    {
 		$this->event = $event;
 		return $this;
 	}
-	
-	function getEvent() {
-		return $this->event;
+
+	function getEvent(): ?Event
+    {
+		return $this->event ?? null;
 	}
-	
-	function setName( $name ) {
-		$this->name = $name;
-		return $this;
-	}
-	
-	function getName() {
+
+	function getName(): string
+    {
 		return $this->name;
 	}
-	
-	function setDescription( $description ) {
+
+	function setDescription( $description ): static
+    {
 		$this->description = $description;
 		return $this;
 	}
-	
-	function getDescription() {
-		return $this->description;
+
+	function getDescription(): ?string
+    {
+		return $this->description ?? null;
 	}
-	
-	function setDate( $date ) {
+
+	function setDate( $date ): static
+    {
 		$this->date = to_date($date);
 		return $this;
 	}
@@ -87,36 +92,43 @@ class Day {
 	function getDate() {
 		return $this->date;
 	}
-	
-	function setContact( $contact ) {
+
+	function setContact( $contact ): static
+    {
 		$this->contact = $contact;
 		return $this;
 	}
-	
-	function getContact() {
-		return $this->contact;
+
+	function getContact(): ?Contact
+    {
+		return $this->contact ?? null;
 	}
-	
-	function addShift($shift) {
+
+	function addShift($shift): static
+    {
 		$this->shifts[] = $shift;
 		$shift->setDay($this);
 		return $this;
 	}
-	
-	function getShifts() {
+
+	function getShifts(): array
+    {
 		return $this->shifts;
 	}
-	
-	function addHours( $hours ) {
+
+	function addHours( $hours ): static
+    {
 		$this->hours[] = $hours;
 		return $this;
 	}
-	
-	function getHours() {
+
+	function getHours(): array
+    {
 		return $this->hours;
 	}
-	
-	function isOpen( $h ) {
+
+	function isOpen( $h ): bool
+    {
 		foreach ( $this->hours as $hs ) {
 			if ( $hs->isOpen( $h ) ) {
 				return true;
@@ -124,16 +136,16 @@ class Day {
 		}
 		return false;
 	}
-	
+
 	function getEarliestStarting() {
 		$hour = null;
 		foreach ( $this->hours as $hs ) {
 			$hour = minimum( $hour, $hs->getStarting() );
 		}
-		$hour = minimum( $hour, Shift::earlistStarting( $this->shifts ) );
+		$hour = minimum( $hour, Shift::earliestStarting( $this->shifts ) );
 		return $hour;
 	}
-	
+
 	function getLastestEnding() {
 		$hour = null;
 		foreach ( $this->hours as $hs ) {

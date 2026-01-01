@@ -2,103 +2,115 @@
 
 class Event {
 
-	private static $nextId = 1;
+	private static int $nextId = 1;
 
-	private $id;
-	private $name;
-	private $description;
-	private $contact;
-	private $passcode;
-	private $version;
-	private $script;
-	
-	private $nameToDay = array();
-	private $idToDay = array();
-	private $activities = array();
-	private $nameToRole = array();
-	private $nameToHint = array();
-	private $nameToVolunteerProperty = array();
-	
-	function __construct() {
+	private int $id;
+	private int $version;
+	private string $name;
+	private ?string $description;
+	private ?Contact $contact;
+	private ?string $passcode;
+	private ?string $script;
+
+	private array $nameToDay = array();
+	private array $idToDay = array();
+	private array $activities = array();
+	private array $nameToRole = array();
+	private array $nameToHint = array();
+	private array $nameToVolunteerProperty = array();
+
+	function __construct( $name ) {
 		$this->id = Event::$nextId++;
 		$this->version = 1;
+		$this->name = $name;
 		return $this;
 	}
-		
-	function setId( $id ) {
+
+	function setId( $id ): static
+    {
 		$this->id = $id;
 		return $this;
 	}
 
-	function getId() {
+	function getId(): int
+    {
 		return $this->id;
 	}
-	
-	function setPasscode( $passcode ) {
+
+	function setPasscode( $passcode ): static
+    {
 		$this->passcode = $passcode;
 		return $this;
 	}
-	
-	function getPasscode() {
+
+	function getPasscode(): string
+    {
 		return $this->passcode;
 	}
-	
-	function setVersion( $version ) {
+
+	function setVersion( $version ): static
+    {
 		$this->version = $version;
 		return $this;
 	}
-	
-	function getVersion() {
+
+	function getVersion(): int
+    {
 		return $this->version;
 	}
-	
-	function setScript( $script ) {
+
+	function setScript( $script ): static
+    {
 		$this->script = $script;
 		return $this;
 	}
-	
-	function getScript() {
+
+	function getScript(): string
+    {
 		return $this->script;
 	}
-	
-	function setName( $name ) {
-		$this->name = $name;
-		return $this;
-	}
-	
-	function getName() {
+
+	function getName(): string
+    {
 		return $this->name;
 	}
-	
-	function setDescription( $description ) {
+
+	function setDescription( $description ): static
+    {
 		$this->description = $description;
 		return $this;
 	}
-	
-	function getDescription() {
+
+	function getDescription(): string
+    {
 		return $this->description;
 	}
-	
-	function setContact( $contact ) {
+
+	function setContact( $contact ): static
+    {
 		$this->contact = $contact;
 		return $this;
 	}
-	
-	function getContact() {
-		return $this->contact;
+
+	function getContact(): ?Contact
+    {
+		return $this->contact ?? null;
 	}
-	
-	function addActivity( $activity ) {
+
+	function addActivity( $activity ): static
+    {
 		$this->activities[] = $activity;
 		$activity->setEvent($this);
 		return $this;
 	}
-	
-	function getActivities() {
+
+	function getActivities(): array
+    {
 		return $this->activities;
 	}
-	
-	function findShiftById( $id ) {
+
+	function findShiftById( $id ): ?Shift
+    {
 		foreach ( $this->getActivities() as $activity ) {
 			foreach ( $activity->getShifts() as $shift ) {
 				if ( $shift->getId() == $id ) {
@@ -108,12 +120,14 @@ class Event {
 		}
 		return null;
 	}
-	
-	function getDays() {
+
+	function getDays(): array
+    {
 		return Day::sortByDate( array_values( $this->nameToDay ) );
 	}
-	
-	function addDay($day) {
+
+	function addDay($day): static
+    {
 		$this->nameToDay[ $day->getName() ] = $day;
 		$this->idToDay[ $day->getId() ] = $day;
 		$day->setEvent($this);
@@ -123,44 +137,49 @@ class Event {
 	function getDay($name) {
 		return $this->nameToDay[$name];
 	}
-	
+
 	function findDayById($id) {
 		return $this->idToDay[$id];
 	}
-	
+
 	function addRole( $role ) {
 		$this->nameToRole[ $role->getName() ] = $role;
 		return $this;
 	}
-	
-	function getRoles() {
+
+	function getRoles(): array
+    {
 		return array_values( $this->nameToRole );
 	}
-	
+
 	function getRole( $name ) {
 		return $nameToRole[$name];
 	}
-	
-	function getHint( $name ) {
+
+	function getHint( $name ): ?string {
 		if ( array_key_exists( $name, $this->nameToHint ) ) {
 			return $this->nameToHint[ $name ]->getValue();
 		}
 		return null;
 	}
-	
-	function getHints() {
+
+	function getHints(): array
+    {
 		return array_values($this->nameToHint);
 	}
-	
-	function addHint( $hint ) {
+
+	function addHint( $hint ): void
+    {
 		$this->nameToHint[ $hint->getName() ] = $hint;
 	}
-	
-	function getVolunteerProperties() {
+
+	function getVolunteerProperties(): array
+    {
 		return array_values($this->nameToVolunteerProperty);
 	}
-	
-	function addVolunteerProperty( $volunteerProperty ) {
+
+	function addVolunteerProperty( $volunteerProperty ): void
+    {
 		$this->nameToVolunteerProperty[ $volunteerProperty->getName() ] = $volunteerProperty;
 	}
 }

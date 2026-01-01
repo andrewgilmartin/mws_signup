@@ -1,6 +1,20 @@
 <?php
+require_once 'event-page-include.php';
 
-require_once 'common-include.php';
+global
+	$base_href,
+	$magicnumber,
+	$SUCCESS_MESSAGE_KEY,
+	$INFORMATION_MESSAGE_KEY,
+	$ERROR_MESSAGE_KEY,
+	$repository,
+	$contacts,
+	$eventId,
+	$event,
+	$dayId,
+	$day,
+	$shiftId,
+	$shift;
 
 class HoursLayout {
 	var $hours;
@@ -67,8 +81,8 @@ foreach ( $event->getDays() as $day ) {
 	foreach ( $event->getActivities() as $activity ) {
 		$activityLayout = new ActivityLayout($activity, $eventLayout->duration);
 		foreach ( $activity->getShifts() as $shift ) {
-			if ( $shift->getDay() !== $day ) { 
-				continue; 
+			if ( $shift->getDay() !== $day ) {
+				continue;
 			}
 			$hoursLayout = null;
 			foreach ( $activityLayout->hoursLayouts as $hl ) {

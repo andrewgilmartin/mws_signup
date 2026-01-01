@@ -1,6 +1,8 @@
 <?php
 require_once 'common-include.php';
 
+global $event, $eventId;
+
 $hideActivitiesWithoutShifts = $event->getHint( 'hide-activities-without-shifts' ) == 'true';
 
 $volunteerPropertyCount = count($event->getVolunteerProperties());
@@ -20,7 +22,7 @@ $volunteerPropertyCount = count($event->getVolunteerProperties());
 
 			foreach ( $event->getDays() as $day ) {
 ?>
-				<h2><?=$day->getName()?>, <?=timetostr($day->getDate())?></h1>
+				<h2><?=$day->getName()?>, <?=timetostr($day->getDate())?></h2>
 <?php
 				foreach ( $event->getActivities() as $activity ) {
 					if ( $hideActivitiesWithoutShifts && ! $activity->findShiftsForDay($day) ) {
@@ -31,16 +33,16 @@ $volunteerPropertyCount = count($event->getVolunteerProperties());
 					<p>
 <?php
 					if ( $activity->getContact() ) {
-?>						
+?>
 						Contact is <?= makeContactSummaryHtml( $activity->getContact() ) ?>
-<?php						
+<?php
 					}
 					else {
-?>						
+?>
 						<i>No contact</i>
-<?php						
+<?php
 					}
-?>					
+?>
 					</p>
 					<table class="activity-volunteer-summary">
 						<tr>
@@ -50,11 +52,11 @@ $volunteerPropertyCount = count($event->getVolunteerProperties());
 							<th colspan="3">Volunteer</th>
 <?php
 							foreach ( $event->getVolunteerProperties() as $vp ) {
-?>								
+?>
 								<th><?= $vp->getName() ?></th>
-<?php								
+<?php
 							}
-?>							
+?>
 						</tr>
 <?php
 						$isActive = false;
@@ -82,11 +84,11 @@ $volunteerPropertyCount = count($event->getVolunteerProperties());
 										<td>
 <?php
 											if ( $v->getContact()->getEmail() ) {
-?>												
+?>
 												<a href="mailto:<?=$v->getContact()->getEmail()?>"><?=htmlspecialchars($v->getContact()->getEmail())?></a>
-<?php												
+<?php
 											}
-?>										
+?>
 										</td>
 											<td>
 											<?=htmlspecialchars($v->getContact()->getTelephone())?>
@@ -94,18 +96,18 @@ $volunteerPropertyCount = count($event->getVolunteerProperties());
 <?php
 										foreach ( $event->getVolunteerProperties() as $vp ) {
 											if ( $v->getProperty( $vp->getName() ) ) {
-?>												
+?>
 												<td>
 													<?= $v->getProperty( $vp->getName() ) ?>
 												</td>
-<?php												
+<?php
 											}
 											else {
-?>										
+?>
 												<td>
 													<i>None</i>
 												</td>
-<?php												
+<?php
 											}
 										}
 									}
@@ -125,17 +127,17 @@ $volunteerPropertyCount = count($event->getVolunteerProperties());
 						if ( ! $isActive ) {
 ?>
 							<tr>
-								<td colspan="4"><i>No shifts</i></td>						
+								<td colspan="4"><i>No shifts</i></td>
 							</tr>
 <?php
 						}
-?>		
+?>
 					</table>
 <?php
 				}
 			}
 ?>
-			<div class="bottom-links">			
+			<div class="bottom-links">
 				<a href="event-page.php?event=<?=$eventId?>">Back to schedule</a>
 			</div>
 		</div>
