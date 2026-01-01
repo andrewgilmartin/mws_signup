@@ -18,17 +18,19 @@ event "Event's Short Name"
 		description "..."
 	end
 	activity "..."
-		shift "Sales"
-			starting 9AM
-			ending 3PM
-		end
-		shift "Setup"
-			starting 8AM
-			ending 10AM
-		end
-		shift "Cleanup"
-			starting 2PM
-			ending 4PM
-		end
+	    day "Sunday"
+            shift "Sales"
+                starting 9AM
+                ending 3PM
+            end
+            shift "Setup"
+                starting 8AM
+                ending 10AM
+            end
+            shift "Cleanup"
+                starting 2PM
+                ending 4PM
+            end
+        end
 	end
 end
