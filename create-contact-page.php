@@ -1,6 +1,21 @@
 <?php
 require_once 'common-include.php';
 
+global
+    $base_href,
+    $magicnumber,
+    $SUCCESS_MESSAGE_KEY,
+    $INFORMATION_MESSAGE_KEY,
+    $ERROR_MESSAGE_KEY,
+    $repository,
+    $contacts,
+    $eventId,
+    $event,
+    $dayId,
+    $day,
+    $shiftId,
+    $shift;
+
 if ( array_key_exists( 'create', $_REQUEST ) ) {
 
 	$name = array_key_exists( 'name', $_REQUEST ) ? trim(stripslashes($_REQUEST['name'])) : "Unnamed";
@@ -8,21 +23,20 @@ if ( array_key_exists( 'create', $_REQUEST ) ) {
 	$telephone = array_key_exists( 'telephone', $_REQUEST ) ? trim(stripslashes($_REQUEST['telephone'])) : "";
 
 	try {
-		$contact = new Contact();
+		$contact = new Contact( $name );
 		$contact
-			->setName($name)
 			->setEmail($email)
 			->setTelephone($telephone);
-		$repository->addContact( $contact );			
+		$repository->addContact( $contact );
 		$_SESSION[$INFORMATION_MESSAGE_KEY] = "Created " . makeContactSummaryHtml( $contact );
-		http_redirect($base_href, 'contacts-page.php');
+        httpRedirect($base_href, 'contacts-page.php');
 	}
 	catch ( Exception $e ) {
 		$_SESSION['name'] = $name;
 		$_SESSION['email'] = $email;
 		$_SESSION['telephone'] = $telephone;
 		$_SESSION[$ERROR_MESSAGE_KEY] = "Unable to create contact due to error: ".$e->getMessage().' '.$e->getTraceAsString();
-		http_redirect($base_href, 'create-contact-page.php');
+        httpRedirect($base_href, 'create-contact-page.php');
 	}
 }
 else {
@@ -65,7 +79,7 @@ else {
 
 			<div class="bottom-links">
 				<a href="contacts-page.php">Back to contacts</a>
-			</div>	
+			</div>
 		</div>
 	</body>
 </html>

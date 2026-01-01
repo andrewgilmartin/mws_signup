@@ -1,6 +1,21 @@
 <?php
 require_once 'common-include.php';
 
+global
+    $base_href,
+    $magicnumber,
+    $SUCCESS_MESSAGE_KEY,
+    $INFORMATION_MESSAGE_KEY,
+    $ERROR_MESSAGE_KEY,
+    $repository,
+    $contacts,
+    $eventId,
+    $event,
+    $dayId,
+    $day,
+    $shiftId,
+    $shift;
+
 $passcode = rs('passcode', gen_uuid());
 $script = rs('script', "");
 
@@ -9,31 +24,31 @@ if ( array_key_exists( 'reset', $_REQUEST ) ) {
 	unset( $_SESSION['passcode'] );
 	unset( $_REQUEST['script'] );
 	unset( $_REQUEST['passcode'] );
-	http_redirect($base_href, "create-event-page.php");
+    httpRedirect($base_href, "create-event-page.php");
 }
 else if ( array_key_exists( 'create', $_REQUEST ) ) {
 	if ( rs('magicnumber') != $magicnumber ) {
 		$_SESSION['script'] = $script;
 		$_SESSION['passcode'] = $passcode;
-		$_SESSION[$ERROR_MESSAGE_KEY] = "Magic number is incorrect. Not saving changes.";		
-		http_redirect($base_href, "create-event-page.php");
+		$_SESSION[$ERROR_MESSAGE_KEY] = "Magic number is incorrect. Not saving changes.";
+        httpRedirect($base_href, "create-event-page.php");
 	}
 	else {
 		try {
-			$event = EventParser::fromScript($script,$contacts);
+			$event = EventParser::fromScript($script, $contacts);
 			$event->setPassCode($passcode);
 			$event->setScript($script);
-			$repository->addEvent($event);			
+			$repository->addEvent($event);
 			unset( $_SESSION['script'] );
 			unset( $_SESSION['passcode'] );
-			http_redirect($base_href, 'event-page.php', 'event', $event->getId() );
+            httpRedirect($base_href, 'event-page.php', 'event', '1'); // $event->getId() );
 		}
 		catch ( Exception $e ) {
 			$_SESSION['script'] = $script;
 			$_SESSION['passcode'] = $passcode;
 			$_SESSION[$ERROR_MESSAGE_KEY] = "Unable to create event due to error: ".$e->getMessage().' '.$e->getTraceAsString();
-			http_redirect($base_href, "create-event-page.php");
-		}		
+            httpRedirect($base_href, "create-event-page.php");
+		}
 	}
 }
 ?>
@@ -73,7 +88,7 @@ else if ( array_key_exists( 'create', $_REQUEST ) ) {
 			</form>
 			<div class="bottom-links">
 				<a href="events-page.php">Back to events</a>
-			</div>	
+			</div>
 		</div>
 	</body>
 </html>

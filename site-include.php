@@ -1,10 +1,10 @@
 <?php
 
-$magicnumber = 'global password';
-$database_address = '127.0.0.1:3306';
-$database_name = 'signup';
+$magicnumber = 'password';
+//$database_address = 'mysql:host=host.docker.internal;dbname=signup;charset=utf8mb4';
+$database_address = 'mysql:host=db;dbname=signup;charset=utf8mb4';
 $database_user = 'signup';
 $database_password = 'signup';
-$base_href = "http://localhost/signup/";
+$base_href = "http://localhost:8080";
 
 ?>

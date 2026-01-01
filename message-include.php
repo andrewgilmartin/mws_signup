@@ -1,4 +1,6 @@
 <?php
+global $ALL_MESSAGE_KEYS;
+
 foreach ( $ALL_MESSAGE_KEYS as $key ) {
 	if(isset($_SESSION[$key])) {
 	?>

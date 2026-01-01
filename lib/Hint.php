@@ -2,11 +2,11 @@
 
 class Hint {
 
-	private static $nextId = 1;
+	private static int $nextId = 1;
 
-	private $id;
-	private $name;
-	private $value;
+	private int $id;
+	private string $name;
+	private string $value;
 
 	function __construct() {
 		$this->id = Hint::$nextId++;
@@ -15,23 +15,23 @@ class Hint {
 	function setId($id) {
 		$this->id = $id;
 	}
-	
+
 	function getId() {
 		return $this->id;
 	}
-	
+
 	function setName($name) {
 		$this->name = $name;
 	}
-	
+
 	function getName() {
 		return $this->name;
 	}
-	
+
 	function setValue($value) {
 		return $this->value = $value;
 	}
-	
+
 	function getValue() {
 		return $this->value;
 	}
