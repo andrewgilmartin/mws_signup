@@ -1,5 +1,5 @@
 <?php
-require_once 'event-page-include.php';
+require_once 'common-include.php';
 
 global
 	$base_href,
