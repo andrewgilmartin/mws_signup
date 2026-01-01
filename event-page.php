@@ -1,15 +1,31 @@
 <?php
 require_once 'event-page-include.php';
+
+global
+    $base_href,
+    $magicnumber,
+    $SUCCESS_MESSAGE_KEY,
+    $INFORMATION_MESSAGE_KEY,
+    $ERROR_MESSAGE_KEY,
+    $repository,
+    $contacts,
+    $eventId,
+    $event,
+    $dayId,
+    $day,
+    $shiftId,
+    $shift;
+
 ?>
 <html>
 	<head>
 	<title><?= htmlspecialchars($event->getName()) ?></title>
     	<link rel="stylesheet" type="text/css" href="common.css">
     	<link media="screen" rel="stylesheet" type="text/css" href="browser.css">
-		<link media="handheld, only screen and (max-device-width: 480px)" href="mobile.css" type="text/css" rel="stylesheet" />	
-		
+		<link media="handheld, only screen and (max-device-width: 480px)" href="mobile.css" type="text/css" rel="stylesheet" />
+
 		<style type="text/css">
-		</style>	
+		</style>
 	</head>
 <body>
 	<div class="page-content">
@@ -32,9 +48,9 @@ require_once 'event-page-include.php';
 <td style="border-bottom: 2px solid gray; padding: 1ex;">&nbsp;</td>
 <?php
 	foreach ( $eventLayout->dayLayouts as $dayLayout ) {
-		
+
 		if ( $dayLayout->day->getId() == $dayId ) {
-?>			
+?>
             <td style="border: 2px solid gray; border-bottom: 0; border-top: 2px solid gray; padding: 1em; padding-top: 0.5em; padding-bottom: 0.5em">
                 <a style="text-decoration: none; color: black;" href="?event=<?=$eventId?>&day=<?= $dayLayout->day->getId() ?>">
 					<span style="font-size: 100%;"><?= htmlspecialchars($dayLayout->day->getName()) ?></span><br/>
@@ -52,7 +68,7 @@ require_once 'event-page-include.php';
 				 </a>
             </td>
 <?php
-		}		
+		}
 ?>
 <?php
 }
@@ -78,17 +94,17 @@ require_once 'event-page-include.php';
 						<td class="open-hours-name">&nbsp;</td><td>Event hours</td>
 					</tr>
 				</table>
-		
+
 				<table class="schedule">
 				<tr>
 					<td class="closed-hours-name" rowspan="1">&nbsp;</td>
-<?php		
+<?php
 					$lastEnding = $eventLayout->earliestStarting;
 					foreach ( $dayLayout->day->getHours() as $hours ) {
 						if ( $lastEnding < $hours->getStarting() ) {
-?>					
+?>
 							<td class="closed-hours-name" colspan="<?= $hours->getStarting() - $lastEnding  ?>">&nbsp;</td>
-<?php					
+<?php
 						}
 ?>
 						<td class="open-hours-name" colspan="<?= $hours->getEnding() - $hours->getStarting() ?>"><?= $hours->getName() ? $hours->getName() : '&nbsp;' ?></td>
@@ -100,16 +116,16 @@ require_once 'event-page-include.php';
 						<td class="closed-hours-name" colspan="<?= $eventLayout->latestEnding - $lastEnding + 1 ?>">&nbsp;</td>
 <?php
 					}
-			
-?>			
+
+?>
 				</tr>
 				<tr>
 					<td class="closed-hours-name">Hours</td>
-<?php	
+<?php
 					for ( $h = $eventLayout->earliestStarting; $h < $eventLayout->latestEnding + 1; $h++ ) {
-?>			
+?>
 						<td class="<?= $dayLayout->day->isOpen( $h ) ? 'open-hours-name' : 'closed-hours-name' ?>"><?= $h < 13 ? $h : ( $h - 12 )  ?></td>
-<?php			
+<?php
 					}
 ?>
 				</tr>
@@ -122,46 +138,46 @@ require_once 'event-page-include.php';
 					$openClass = "activity-open-" . ( $activityOffset % 2 );
 					$closedClass = "activity-closed-" . ( $activityOffset % 2 );
 					$activityOffset += 1;
-?>		
+?>
 					<!-- activity id <?= $activityLayout->activity->getId() ?> -->
 					<tr>
 						<td class="<?= $closedClass ?>" rowspan="<?= count( $activityLayout->hoursLayouts ) ?>">
 							<?= htmlspecialchars($activityLayout->activity->getName()) ?>
 						</td>
-<?php		
+<?php
 						$first = true;
 						foreach ( $activityLayout->hoursLayouts as $hoursLayout ) {
 							if ( ! $first ) {
-?>				
+?>
 					</tr>
 					<tr>
-<?php				
+<?php
 							}
 							$first = false;
 							for ( $h = $eventLayout->earliestStarting; $h < $eventLayout->latestEnding + 1; /* nop */ ) {
 								if ( array_key_exists( $h, $hoursLayout->hours ) ) {
 									$shift = $hoursLayout->hours[$h];
-?>					
+?>
 								<!-- shift id <?= $shift->getId() ?> -->
 								<td colspan="<?= $shift->getDuration() ?>" class="<?= $shift->getVolunteer() ? 'assigned' : 'available'?>"><a class="<?= $shift->getVolunteer() ? 'assigned' : 'available'?>" href="volunteer-page.php?event=<?=$eventId?>&day=<?=$dayId?>&shift=<?= $shift->getId()?>"><?= htmlspecialchars($shift->getRole()->getName()) ?></a></td>
-<?php					
+<?php
 									$h += $shift->getDuration();
 								}
 								else {
 ?>
 								<td class="<?= $dayLayout->day->isOpen( $h ) ? $openClass : $closedClass ?>">&nbsp;</td>
 <?php
-									$h += 1;					
+									$h += 1;
 								}
 							}
 						}
-?>		
+?>
 					</tr>
-<?php		
+<?php
 				}
 ?>
 		</table>
-		
+
 		<table style="font-size: 80%; background: white;">
 			<tr>
 				<td>Legend: </td>
@@ -171,7 +187,7 @@ require_once 'event-page-include.php';
 			</tr>
 		</table>
 
-<?php		
+<?php
 	}
 	}
 ?>

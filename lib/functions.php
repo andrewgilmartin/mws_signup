@@ -3,7 +3,7 @@
 date_default_timezone_set('America/New_York');
 
 function strtobool( $str ) {
-    switch (strtolower($str)) {
+    switch (strtolower($str || "false")) {
         case ("true"): return true;
         default: return false;
     }
@@ -44,7 +44,7 @@ function hourtostr( $hour ) {
 }
 
 function timetostr( $time ) {
-	return strftime("%Y-%m-%d",$time*1);
+	return date("Y-m-d",$time*1);
 }
 
 function to_hour( $hour ) {
@@ -66,18 +66,18 @@ function cmp( $a, $b ) {
 }
 
 function minimum( $a, $b ) {
-	return is_null($a) 
-		? $b 
-		: ( is_null($b) 
-			? $a 
+	return is_null($a)
+		? $b
+		: ( is_null($b)
+			? $a
 			: min( $a, $b ) );
 }
 
 function maximum( $a, $b ) {
-	return is_null($a) 
-		? $b 
-		: ( is_null($b) 
-			? $a 
+	return is_null($a)
+		? $b
+		: ( is_null($b)
+			? $a
 			: max( $a, $b ) );
 }
 
@@ -133,8 +133,8 @@ function makeContactSummaryHtml( $contact ) {
 	return $summary;
 }
 
-// http_redirect( [ page (, [name, value] )* ] )
-function http_redirect() {
+// httpRedirect( [ page (, [name, value] )* ] )
+function httpRedirect() {
 	$url = func_get_arg(0);
 	if ( func_num_args() > 0 ) {
 		$url .= func_get_arg(1); // path
@@ -144,11 +144,13 @@ function http_redirect() {
 			$value = func_get_arg($i+1);
 			$url .= ( $connector.urlencode($name)."=".urlencode($value) );
 			$connector = "&";
-		}	
+		}
 	}
 	Header( "HTTP/1.1 302 Moved" );
 	Header( "Location: $url" );
-	die();	
+	ob_end_flush();
+	flush();
+	exit();
 }
 
 // make_url( [ page (, [name, value] )* ] )
@@ -162,7 +164,7 @@ function make_url() {
 			$value = func_get_arg($i+1);
 			$url .= ( $connector.urlencode($name)."=".urlencode($value) );
 			$connector = "&";
-		}	
+		}
 	}
 	return $url;
 }
@@ -223,7 +225,7 @@ function DUMP() {
 	for( $i = 0; $i < func_num_args(); $i++) {
 		$a = func_get_arg($i);
 		print var_dump($a) . "\n";
-	}	
+	}
 }
 
 ?>

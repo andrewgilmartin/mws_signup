@@ -1,9 +1,9 @@
 <?php
 
 class EventParser {
-	
-	private $lexer;
-	private $keyToData = array();
+
+	private Lexer $lexer;
+	private array $keyToData = array();
 
 	function __construct( $tokens, $contacts ) {
 		$this->lexer = new Lexer($tokens);
@@ -13,12 +13,20 @@ class EventParser {
 		}
 	}
 
-	static function fromScript( $script, $contacts = array() ) {
-		$parser = new EventParser($script,$contacts);
+    /**
+     * @throws Exception
+     */
+    static function fromScript($script, $contacts = array() ): ?Event
+    {
+		$parser = new EventParser($script, $contacts);
 		return $parser->parse();
 	}
 
-	function parse() {
+    /**
+     * @throws Exception
+     */
+    function parse(): ?Event
+    {
 		try {
 			$event = null;
 			while ( $t = $this->t() ) {
@@ -36,7 +44,7 @@ class EventParser {
 			return $event;
 		}
 		catch ( Exception $e ) {
-			throw new Exception( 
+			throw new Exception(
 				"Exception \""
 				.$e->getMessage()
 				."\" in parsing context "
@@ -47,28 +55,31 @@ class EventParser {
 				.$e->getTraceAsString()
 			);
 		}
-		return null;
 	}
 
-	private function parseEvent() {
-		$event = new Event();
-		$event->setName( $this->t() );
+    /**
+     * @throws Exception
+     */
+    private function parseEvent(): ?Event
+    {
+		$event = new Event( $this->t() );
 		while ( $t = $this->t() ) {
 			switch( $t ) {
 				case 'id':
 					$event->setId( $this->t() );
 					break;
-				case 'description': 
+				case 'description':
 					$event->setDescription( $this->t() );
 					break;
 				case 'contact':
-					$contact = $this->get( $this->t() );
+                    $name = $this->t();
+                    $contact = $this->getContact( $name );
 					if ( $contact ) {
 						$event->setContact( $contact );
 					}
 					else {
-						throw new Exception( "expected contact while parsing event");
-					}					
+						throw new Exception( "expected contact \"$name\" while parsing event");
+					}
 					break;
 				case 'role':
 					$role = $this->parseRole();
@@ -119,18 +130,22 @@ class EventParser {
 		}
 		return null;
 	}
-	
-	private function parseHint() {
+
+	private function parseHint() : Hint {
 		$hint = new Hint();
 		$hint->setName($this->t());
 		$hint->setValue($this->t());
 		return $hint;
 	}
-	
-	private function parseVolunteerProperty() {
+
+    /**
+     * @throws Exception
+     */
+    private function parseVolunteerProperty(): ?VolunteerProperty
+    {
 		$name = $this->t();
 		while ( $t = $this->t() ) {
-			switch( $t ) {									
+			switch( $t ) {
 				case 'description': {
 					$description = $this->t();
 					break;
@@ -146,12 +161,15 @@ class EventParser {
 		}
 		return null;
 	}
-	
-	private function parseDay() {
-		$day = new Day();
-		$day->setName( $this->t() );
+
+    /**
+     * @throws Exception
+     */
+    private function parseDay(): ?Day
+    {
+		$day = new Day( $this->t() );
 		while ( $t = $this->t() ) {
-			switch( $t ) {									
+			switch( $t ) {
 				case 'id':
 					$day->setId( $this->t() );
 					break;
@@ -160,7 +178,7 @@ class EventParser {
 					break;
 				case 'contact':
 					$name = $this->t();
-					$contact = $this->get( $name );
+                    $contact = $this->getContact( $name );
 					if ( $contact ) {
 						$day->setContact($contact);
 					}
@@ -173,8 +191,8 @@ class EventParser {
 					$day->addHours( $hours );
 					break;
 				case 'end': {
-					return $day;										
-				}										
+					return $day;
+				}
 				case 'comment':
 					$comment = $this->t();
 					break;
@@ -185,10 +203,13 @@ class EventParser {
 		}
 		return null;
 	}
-	
-	private function parseHours() {
-		$hours = new Hours();
-		$hours->setName( $this->t() );
+
+    /**
+     * @throws Exception
+     */
+    private function parseHours(): ?Hours
+    {
+		$hours = new Hours( $this->t() );
 		while ( $t = $this->t() ) {
 			switch( $t ) {
 				case 'id':
@@ -211,8 +232,12 @@ class EventParser {
 		}
 		return null;
 	}
-	
-	private function parseRole() {
+
+    /**
+     * @throws Exception
+     */
+    private function parseRole(): ?Role
+    {
 		$role = new Role();
 		$role->setName( $this->t() );
 		while ( $t = $this->t() ) {
@@ -234,12 +259,15 @@ class EventParser {
 		}
 		return null;
 	}
-	
-	private function parseActivity() {
-		$activity = new Activity();
-		$activity->setName( $this->t() );
+
+    /**
+     * @throws Exception
+     */
+    private function parseActivity(): ?Activity
+    {
+		$activity = new Activity( $this->t() );
 		while ( $t = $this->t() ) {
-			switch( $t ) {										
+			switch( $t ) {
 				case 'id':
 					$activity->setId( $this->t() );
 					break;
@@ -248,7 +276,7 @@ class EventParser {
 					break;
 				case 'contact':
 					$name = $this->t();
-					$contact = $this->get( $name );
+					$contact = $this->getContact( $name );
 					if ( $contact ) {
 						$activity->setContact($contact);
 					}
@@ -283,8 +311,13 @@ class EventParser {
 		}
 		return null;
 	}
-	
-	private function parseShifts() {
+
+    /**
+     * @return Shift[]|null
+     * @throws Exception
+     */
+    private function parseShifts(): ?array
+    {
 		$shifts = array();
 		while ( $t = $this->t() ) {
 			switch( $t ) {
@@ -304,8 +337,13 @@ class EventParser {
 		}
 		return null;
 	}
-	
-	private function parseShift() {
+
+    /**
+     * @return Shift[]|null
+     * @throws Exception
+     */
+    private function parseShift(): ?array
+    {
 		$shift = new Shift();
 		$count = 1;
 		$role = $this->get( $this->t() );
@@ -347,8 +385,12 @@ class EventParser {
 		}
 		return null;
 	}
-	
-	private function parseVolunteer() {
+
+    /**
+     * @throws Exception
+     */
+    private function parseVolunteer(): ?Volunteer
+    {
 		$volunteer = new Volunteer();
 		$contact = $this->get( $this->t() );
 		if ( $contact ) {
@@ -378,21 +420,49 @@ class EventParser {
 		}
 		return null;
 	}
-	
-	private function put( $key, $data ) {
+
+    private function getContact( $name ) : ?Contact
+    {
+        $contact = $this->get( $name );
+        if ( ! $contact ) {
+            $contact = $this->createContact( $name );
+        }
+        return $contact;
+    }
+
+    private function createContact( $name ) : Contact
+    {
+        global $repository;
+        $contact = new Contact( $name );
+        $contact
+            ->setEmail("")
+            ->setTelephone("");
+        $repository->addContact( $contact );
+
+        $this->put( $contact->getId(), $contact );
+        $this->put( $contact->getName(), $contact );
+
+        return $contact;
+    }
+
+	private function put( $key, $data ): static
+    {
 		$this->keyToData[ $key ] = $data;
 		return $this;
 	}
 
-	private function get( $key ) {
-		return $this->keyToData[$key];
+	private function get( $key )
+    {
+		return $this->keyToData[$key] ?? null;
 	}
-		
-	private function t() {
+
+	private function t()
+    {
 		return $this->lexer->t();
 	}
 
-	private function context() {
+	private function context(): string
+    {
 		return $this->lexer->context();
 	}
 }

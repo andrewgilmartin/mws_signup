@@ -1,5 +1,8 @@
 <?php
 require_once 'common-include.php';
+
+global $scriptFilename;
+
 ?>
 <html>
 	<head>
@@ -14,12 +17,12 @@ require_once 'common-include.php';
 			require_once 'message-include.php';
 ?>
 			<pre>
-<?=htmlspecialchars(file_get_contents($scriptFilename))?>			
+<?=htmlspecialchars(file_get_contents($scriptFilename))?>
 			</pre>
-			<div class="bottom-links">			
+			<div class="bottom-links">
 				<a href="edit-script-page.php">Edit</a> |
 				<a href="index.php">Back to schedule</a>
 			</div>
 		</div>
 	</body>
-</html>	
+</html>

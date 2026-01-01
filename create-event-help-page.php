@@ -9,25 +9,25 @@
     </head>
 <body>
     <div class="page-content">
-    
+
 <h1>Scripting an event</h1>
 
 <p>
-This documents how to describe an event using this applicaton's event syntax.
+This documents how to describe an event using this application's event syntax.
 The syntax is quite regular and so what you learn in one area of the syntax will help you understand other areas.
 The complete event description is called an <i>event script</i> or, simply, a <i>script</i>.
 </p>
 <p>
-There are two basic clauses in the syntax. 
-The first is a marker followed by one or more facts. 
+There are two basic clauses in the syntax.
+The first is a marker followed by one or more facts.
 For example,<pre>name "Jane Jacobs"</pre> has the marker <i>name</i> followed by the <i>Jane Jacobs</i> fact.
 If a fact contains spaces, as in this example, then the fact needs to be enclosed in double-quotation marks.
 The second clause is a marker followed by a name, then zero, one or more clauses and finally and <i>end</i> marker.
 For example, <pre>role Gardener description "A person with dirt under their nails." end</pre> has the marker <i>role</i> followed by the <i>Gardener</i> title of the role, followed by one <i>description</i> clause and finishing with <i>end</i>.
-Note that since the role's title, <i>Gardener</i>, does not contains spaces then the title was not quoted. (It is not a mistake to have used <tt>"Gardener"</tt> instead.)
+Note that since the role's title, <i>Gardener</i>, does not contain spaces then the title was not quoted. (It is not a mistake to have used <tt>"Gardener"</tt> instead.)
 </p>
 <p>
-Dates must always be entered in the form or <i>YYYY-MM-DD</i>. 
+Dates must always be entered in the form or <i>YYYY-MM-DD</i>.
 For example, June 3, 2011 is entered <tt>2011-06-03</tt>.
 Times must always be entered in the form of and hour followed by AM or PM. For example, 7 o'clock is entered <tt>7AM</tt>.
 Note that half hours are not yet supported.
@@ -38,24 +38,24 @@ Note that half hours are not yet supported.
 event "event's title"
 
     description "event's description"
-    
+
     contact "contact's name"
 
     <i>VOLUNTEER PROPERTIES</i>
-	
+
     <i>DAYS</i>
-    
+
     <i>ROLES</i>
-    
+
     <i>ACTIVITIES</i>
-    
+
     <i>HINTS</i>
-    
+
 end
 </pre>
 <p>
-Use the <i>event</i> clause to sepecify the event.
-The event's title is given immediatly after the event term.
+Use the <i>event</i> clause to specify the event.
+The event's title is given immediately after the event term.
 The title will be used on all event pages.
 This clause contains a several sub-clauses.
 Use the <i>description</i> clause to enter the event's description.
@@ -76,16 +76,16 @@ day "day's title"
     date <i>date</i>
 
     <i>HOURS</i>
-    
+
 end
 </pre>
 <p>
 Use the <i>day</i> clause to specify each date of the event.
-Days include not only the day or days of the event but also the days needed to setup for and clean from the event.
-For example, if the event is on Saturday morning and volunteers are needed on Friday night for set up then this event must have two day clauses.
+Days include not only the day or days of the event but also the days needed to set up for and clean from the event.
+For example, if the event is on Saturday morning and volunteers are needed on Friday night for set up then this event must have two-day clauses.
 </p>
 <p>
-For information on <i>hour</i> clause see below. 
+For information on <i>hour</i> clause see below.
 The <i>hour</i> clause can be used as many times as needed.
 </p>
 
@@ -98,7 +98,7 @@ end
 </pre>
 <p>
 Use the <i>hour</i> clause to specify the times of the public portion of the event.
-For example, if Saturday morning's event occures between 10 AM and noon then you would only specify these hours for Saturday's hours: For example,
+For example, if Saturday morning's event occurs between 10 AM and noon then you would only specify these hours for Saturday's hours: For example,
 <pre>
 hours "Morning"
     starting 10AM
@@ -123,13 +123,13 @@ Use the <i>description</i> clause to clarify what is expected of the volunteer i
 <h2><i>activity</i> clause</h2>
 <pre>
 activity "activity's name"
-    
+
     description "activity's description"
-    
+
     contact "contact's name"
-    
+
     <i>DAYS</i>
-    
+
 end
 </pre>
 <p>
@@ -141,7 +141,7 @@ That is, who the volunteer should contact for more information or locate on the 
 </p>
 <p>
 Use one or more <i>day</i> clauses to specify that day's shifts.
-For information on <i>day</i> clause (within an activity) see below. 
+For information on <i>day</i> clause (within an activity) see below.
 The <i>day</i>clause can be used as many times as needed.
 </p>
 
@@ -153,7 +153,7 @@ end
 </pre>
 <p>
 Use the <i>day</i> clause to group the activity's shifts by day.
-For information on <i>shift</i> clause see below. 
+For information on <i>shift</i> clause see below.
 The <i>shift</i> clause can be used as many times as needed.
 </p>
 <h2><i>shift</i> clause</h2>
@@ -168,7 +168,7 @@ end
 Use the <i>shift</i> clause to specify each activity shift for which you need a volunteer.
 When the volunteer page is shown to the potential volunteer the activity's description, the activity's contact details, and the shift's role's description are all presented.
 For example, if an activity needs 2 people for setup, 3 for operation, and 2 for cleanup then 3 <i>shift</i> clauses will be needed.
-If setup is from 8 AM to 10 AM then the shifts are specified as 
+If setup is from 8 AM to 10 AM then the shifts are specified as
 <pre>
 shift "Setup"
     count 2
@@ -177,7 +177,7 @@ shift "Setup"
 end
 </pre>
 When there is only one shift for the given day and role the <i>count</i> clause need not be included.
-Of all the clauses, the <i>shift</i> clause will be the most used clause within an event's specification. 
+Of all the clauses, the <i>shift</i> clause will be the most used clause within an event's specification.
 </p>
 
 <h1><i>volunteer-property</i> clause</h1>
@@ -200,7 +200,7 @@ The volunteer's name, email address, and telephone number are always collected.
 Currently, name and telephone number are required.
 </p>
 
-<h1><i>hint</i> clause</h2>
+<h2><i>hint</i> clause</h2>
 <pre>
 hint <i>name</i> <i>value</i>
 </pre>
@@ -219,7 +219,7 @@ If you would like to hide activities without shifts then use this hint.
 This example event script is for a parents &amp; teacher meeting.
 The event is happening on a Sunday evening and needs a setup and a cleanup volunteer.
 Using the application for such a minimal event might seem excessive but at least volunteering signup is consistent.
-Note that there are no contact clauses (contact the 3rd grade teacher), the hours clause has no name (the event's name is enough), and the roles have no descriptions (the names are self explanitory).
+Note that there are no contact clauses (contact the 3rd grade teacher), the hours clause has no name (the event's name is enough), and the roles have no descriptions (the names are self-explanatory).
 You only need to use the clauses that are required.
 In general, the smaller the event the fewer features used.
 (However, I would always include an event contact.)
@@ -229,26 +229,26 @@ event "Parents & Teacher Night"
 
     description "This night is a short event to welcome the parents to 3rd grade.
                  It is a low-key meeting but there is setup and cleanup volunteer help needed."
-    
-    day "Sunday"    
-        date 2011-02-20        
+
+    day "Sunday"
+        date 2011-02-20
         hours ""
             starting 6PM
             ending 8PM
-        end    
+        end
     end
 
     role "Setup"
     end
-    
+
     role "Cleanup"
     end
-    
+
     activity "Backstage"
-    
-        description "Volunteers needed to setup the room before 
+
+        description "Volunteers needed to setup the room before
                      the meeting and afterward clean up the room."
-        
+
         day "Sunday"
             shift "Setup"
                 starting 5PM
@@ -258,15 +258,15 @@ event "Parents & Teacher Night"
                 starting 8PM
                 ending 9PM
             end
-        end    
+        end
     end
-    
+
 end
 </pre>
 
 <h2>Example 2</h2>
 <p>
-This example event script is for a one day event that has distinct morning and afternoon sessions.
+This example event script is for a one-day event that has distinct morning and afternoon sessions.
 There is also preparation needed the day before.
 There are 3 volunteers needed for setup on the Friday.
 Saturday there are many volunteers needed: 3 for setup, 6 go-fors, and 3 for cleanup.
@@ -275,14 +275,14 @@ Saturday there are many volunteers needed: 3 for setup, 6 go-fors, and 3 for cle
 event "MWS Cafeteria Planning"
 
     contact "Jamie Oliver"
-    
-    description "We will be presenting a morning presentation on food choice 
+
+    description "We will be presenting a morning presentation on food choice
                  and cafeterias at Waldorf schools in the US"
-    
+
     day "Friday"
         date 2011-03-19
     end
-    
+
     day "Saturday"
         date 2011-03-20
         hours "Presentations"
@@ -294,19 +294,19 @@ event "MWS Cafeteria Planning"
             ending 5PM
         end
     end
-    
+
     role "Cleanup"
     end
-    
+
     role "Setup"
     end
-    
+
     role "Coat-check"
     end
-    
+
     role "Go-for"
     end
-    
+
     activity "Backstage"
         day "Friday"
             shift "Setup"
@@ -352,13 +352,13 @@ event "MWS Cafeteria Planning"
             end
         end
     end
-    
+
 end
 </pre>
 
 END
 
-<p><i>This document was last updated Oct 3, 2011</i></p>
+<p><i>This document was last updated Jan 1, 2026</i></p>
     </div>
 </body>
 </html>

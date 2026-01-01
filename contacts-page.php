@@ -1,5 +1,21 @@
 <?php
 require_once 'common-include.php';
+
+global
+    $base_href,
+    $magicnumber,
+    $SUCCESS_MESSAGE_KEY,
+    $INFORMATION_MESSAGE_KEY,
+    $ERROR_MESSAGE_KEY,
+    $repository,
+    $contacts,
+    $eventId,
+    $event,
+    $dayId,
+    $day,
+    $shiftId,
+    $shift;
+
 ?>
 <html>
 	<head>
@@ -14,7 +30,7 @@ require_once 'common-include.php';
 
 <?php
 			require_once 'message-include.php';
-			
+
 			if ( count($contacts) == 0 ) {
 ?>
 				<p>There are no contacts currently</p>
@@ -29,42 +45,42 @@ require_once 'common-include.php';
 						<th>Telephone</th>
 					</tr>
 <?php
-					foreach ( $contacts as $contact ) {						
+					foreach ( $contacts as $contact ) {
 ?>
 						<tr>
 							<td>
 								<a href="update-contact-page.php?contact=<?=$contact->getId()?>"><?= htmlspecialchars($contact->getName())?></a>
 							</td>
 							<td>
-<?php							
+<?php
 								if ( $contact->getEmail() ) {
-?>									
+?>
 									<?= htmlspecialchars( $contact->getEmail() )?>
-<?php							
+<?php
 								}
-?>								
+?>
 							</td>
 							<td>
-<?php							
+<?php
 								if ( $contact->getTelephone() ) {
-?>									
+?>
 									<?= htmlspecialchars($contact->getTelephone())?>
-<?php							
+<?php
 								}
-?>																
+?>
 							</td>
 						</tr>
 <?php
 					}
-?>		
+?>
 				</table>
 <?php
 			}
 ?>
 			<div class="bottom-links">
-				<a href="create-contact-page.php">Create Contact</a> | 
+				<a href="create-contact-page.php">Create Contact</a> |
 				<a href="./">Back to events</a>
-			</div>	
+			</div>
 		</div>
 	</body>
 </html>

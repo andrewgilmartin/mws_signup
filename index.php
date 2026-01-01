@@ -1,6 +1,8 @@
 <?php
 require_once 'common-include.php';
 
+global $repository;
+
 $eventRecords = $repository->getEventRecords();
 
 ?>
@@ -17,7 +19,7 @@ $eventRecords = $repository->getEventRecords();
 
 <?php
 			require_once 'message-include.php';
-			
+
 			if ( count($eventRecords) == 0 ) {
 ?>
 				<p>There are no events currently</p>
@@ -32,14 +34,14 @@ $eventRecords = $repository->getEventRecords();
 						<li><a href="event-page.php?event=<?=$eventRecord['id']?>"><?= htmlspecialchars($eventRecord['name'])?></a></li>
 <?php
 					}
-?>		
+?>
 				</ul>
 <?php
 			}
 ?>
 			<div class="bottom-links">
 				<a href="create-event-page.php">Create event</a>
-			</div>	
+			</div>
 		</div>
 	</body>
 </html>

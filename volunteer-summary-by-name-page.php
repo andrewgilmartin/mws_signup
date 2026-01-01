@@ -1,6 +1,21 @@
 <?php
 require_once 'common-include.php';
 
+global
+    $base_href,
+    $magicnumber,
+    $SUCCESS_MESSAGE_KEY,
+    $INFORMATION_MESSAGE_KEY,
+    $ERROR_MESSAGE_KEY,
+    $repository,
+    $contacts,
+    $eventId,
+    $event,
+    $dayId,
+    $day,
+    $shiftId,
+    $shift;
+
 $hideActivitiesWithoutShifts = $event->getHint( 'hide-activities-without-shifts' ) == 'true';
 
 $volunteerPropertyCount = count($event->getVolunteerProperties());
@@ -15,7 +30,7 @@ $volunteerPropertyCount = count($event->getVolunteerProperties());
 	<body>
 		<div class="page-content">
 			<h1><?=$event->getName()?></h1>
-			
+
 			<table>
 				<tr>
 					<th align="left">Name</th>
@@ -30,25 +45,25 @@ $volunteerPropertyCount = count($event->getVolunteerProperties());
 			require_once 'message-include.php';
 
 			$lastContextId = -1;
-			
+
 			foreach ( $repository->getContactVolunteerRecords( $event->getId() ) as $contactVolunteerRecord ) {
 				$shift = $event->findShiftById( $contactVolunteerRecord['shift_id']);
-				if ( ! $shift ) { 
+				if ( ! $shift ) {
 ?>
 					<td colspan="3"></td>
 <?php
 					continue;
-				}   
-?>				
+				}
+?>
 				<tr>
 <?php
 				if ( $contactVolunteerRecord['contact_id'] == $lastContextId ) {
-?>			
+?>
 					<td colspan="3"></td>
 <?php
 				}
 				else {
-?>			
+?>
 					<td>
 						<?=htmlspecialchars($contactVolunteerRecord['name'])?>
 					</td>
@@ -61,7 +76,7 @@ $volunteerPropertyCount = count($event->getVolunteerProperties());
 <?php
 					$lastContextId = $contactVolunteerRecord['contact_id'];
 				}
-?>			
+?>
 					<td>
 						<a href="volunteer-page.php?event=<?=$event->getId()?>&day=<?=$shift->getDay()->getId()?>&shift=<?= $shift->getId()?>">
 							<?=htmlspecialchars($shift->getRole()->getName())?>
@@ -73,20 +88,14 @@ $volunteerPropertyCount = count($event->getVolunteerProperties());
 					<td align="right"><?=hourtostr($shift->getStarting())?></td>
 					<td align="right"><?=hourtostr($shift->getEnding())?></td>
 				</tr>
-<?php				
+<?php
 			}
-?>			
+?>
 			</table>
-			
-			<div class="bottom-links">			
+
+			<div class="bottom-links">
 				<a href="event-page.php?event=<?=$eventId?>">Back to schedule</a>
 			</div>
 		</div>
 	</body>
 </html>
-
-
-
-
-
-
